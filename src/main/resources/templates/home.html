@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Covid-19 Tracker Application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script>
+        ScrollReveal({reset : true});
+    </script>
+</head>
+<style>
+body{
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+background-color: antiquewhite;
+
+}
+    #first{
+        text-align: center;
+    height: 62px;
+    display: block;
+    transition: all 0.5s;
+    margin-top: 10px;
+    margin: 16px 0px;
+    box-shadow: 0 4px 25px rgb(0 0 0);
+    background-color: #d2a813;
+ background-color: #2f4353;
+background-image: linear-gradient(541deg, #2f4353 0%, #d2ccc4 74%);
+    color: #fff;
+   font-size: 2.1rem;
+            }
+            .jumbotron{
+                position: relative;
+    display: block;
+    padding: 43px;
+    margin: 34px auto;
+    width: 98%;
+    box-shadow: 0px 4px 25px rgba(0.0.0.1);
+    background: background-color: #000000;
+    background-image: linear-gradient(315deg, #000000 0%, #a29bfe 74%);
+    font-weight: 1000;
+    transition: all 0.5s;
+    cursor: pointer;
+    border-radius: 30px
+            }
+            .jumbotron:hover{
+             background: background-color: #000000;
+    background-image: linear-gradient(411deg, #000000 0%, #a29bfe 74%);
+transition: all 0.5s ;
+color: #fff;
+transform: scale(1.02);
+}
+#para{
+margin-top:30px;
+margin-bottom:30px;
+padding:20px;
+
+font-size: 1.3rem;
+}
+
+
+</style>
+<body>
+<marquee></marquee>
+<h1 id = "first">Coronavirus Tracker Application</h1>
+<p id="para">This application lists the current number of cases reported across the Globe</p>
+
+<div class="jumbotron">
+    <h1 class="display-4" th:text="${totalReportedCases}"></h1>
+    <p class="lead">Total Cases reported as of today</p>
+</div>
+
+<div class="container">
+<table class="table">
+    <tr>
+        <th>State</th>
+        <th>Country</th>
+        <th>Total cases reported</th>
+    </tr>
+    <tr th:each="locationStat : ${locationStats}">
+        <td th:text="${locationStat.state}" class="th"></td>
+        <td th:text="${locationStat.country}" class = "th"></td>
+        <td th:text="${locationStat.latestTotalCases}" class = "th">0</td>
+    </tr>
+</table>
+
+</div>
+<script>
+    window.sr = ScrollReveal({
+    origin: "0",
+    top: "0",
+    duration: 2000,
+    distance: "80px",
+    reset: true})
+
+
+    sr.reveal(".jumbotron",{delay: 500});
+    sr.reveal(".th",{delay: 100});
+    sr.reveal(".display-4",{delay: 500});
+    sr.reveal(".container",{});
+    sr.reveal(".table",{delay: 600});
+</script>
+</body>
+
+</html>
